@@ -15,7 +15,7 @@ Inclure le script du composant dans la page :
 ```html
 <viewer-3dvue
   name="monViewer"
-  src="https://app.3dvue.fr/view?p=AB01-CD02"
+  src="https://app.3dvue.fr/view?p=AB01"
   debug
 ></viewer-3dvue>
 ```
@@ -120,7 +120,7 @@ const viewer = document.querySelector('viewer-3dvue[name="monViewer"]');
 Charge un nouveau modèle en remplaçant le modèle actuel.
 
 ```js
-viewer.loadModel("AB01-CD02");
+viewer.loadModel("AB01");
 ```
 
 | Paramètre | Type | Description |
@@ -131,33 +131,33 @@ viewer.loadModel("AB01-CD02");
 
 ### `addModel(id)`
 
-Ajoute un ou plusieurs segments au modèle actuel et recharge la scène.
+Ajoute un ou plusieurs objets à la scene actuelle.
 
 ```js
 viewer.addModel("EF03");
-viewer.addModel("EF03-GH04"); // plusieurs segments
+viewer.addModel("EF03-GH04"); // plusieurs objets
 ```
 
 | Paramètre | Type | Description |
 |---|---|---|
-| `id` | `string` | Segment(s) à ajouter |
+| `id` | `string` | Models(s) à ajouter |
 
 ---
 
 ### `removeModel(objectIndex)`
 
-Supprime un segment par son index et recharge la scène.
+Supprime un model par son index et recharge la scène.
 
 ```js
-viewer.removeModel(1); // supprime le 2e segment
+viewer.removeModel(1); // supprime le 2e modele
 ```
 
 | Paramètre | Type | Défaut | Description |
 |---|---|---|---|
-| `objectIndex` | `number` | `0` | Index du segment à supprimer |
+| `objectIndex` | `number` | `0` | Index du model à supprimer |
 
 > [!CAUTION]
-> Impossible de supprimer le dernier segment restant.
+> Impossible de supprimer le dernier model restant.
 
 ---
 
@@ -173,7 +173,7 @@ viewer.setMaterial({ "1": "1a" }, 1);             // objet 1
 | Paramètre | Type | Défaut | Description |
 |---|---|---|---|
 | `materialList` | `Object` | — | `{ "indexMesh": "idMaterial", ... }` |
-| `objectIndex` | `number` | `0` | Index du segment cible |
+| `objectIndex` | `number` | `0` | Index du model cible |
 
 ---
 
@@ -259,20 +259,19 @@ Une **dropzone** est un rectangle défini dans le fichier SVG du produit, identi
 ```
 
 > [!NOTE]
-> La dropzone par défaut est `"dropzone001"`. Si plusieurs zones sont disponibles dans le SVG, il suffit de passer l'`id` correspondant via l'option `dropzone`.
+> La dropzone par défaut est `"dropzone001"`. Si plusieurs zones sont disponibles dans le SVG, il suffit de passer l'`id` correspondant via l'option `dropzone`. Si 'il n'y a pas de dropzone impossible d'ajouter un élément
 
 ---
 
 ### `addSVGText(text, opts)`
 
-Ajoute un texte dans une dropzone de la map SVG.
+Ajoute un texte dans une dropzone du SVG.
 
 ```js
 viewer.addSVGText("Mon texte", {
   fill: "#ff0000",
   fontFamily: "Arial",
-  dropzone: "dropzone001",
-  selectable: true
+  dropzone: "dropzone001"
 });
 ```
 
@@ -281,20 +280,18 @@ viewer.addSVGText("Mon texte", {
 | `fill` | `string` | `"#000000"` | Couleur du texte (hex) |
 | `fontFamily` | `string` | `''` | Police de caractères |
 | `dropzone` | `string` | `"dropzone001"` | `id` du rectangle cible dans le SVG |
-| `selectable` | `boolean` | `true` | Rend l'élément sélectionnable dans le viewer |
 
 ---
 
 ### `addSVGImage(source, opts)` *(async)*
 
-Ajoute une image dans une dropzone de la map SVG. Accepte un objet `File` ou un `ArrayBuffer`.
+Ajoute une image dans une dropzone du SVG. Accepte un objet `File` ou un `ArrayBuffer`.
 
 ```js
 // Depuis un input file
 const file = document.querySelector('input[type="file"]').files[0];
 await viewer.addSVGImage(file, {
-  dropzone: "dropzone001",
-  selectable: true
+  dropzone: "dropzone001"
 });
 
 // Depuis un ArrayBuffer
@@ -310,10 +307,6 @@ await viewer.addSVGImage(buffer, { dropzone: "dropzone002" });
 | Option | Type | Défaut | Description |
 |---|---|---|---|
 | `dropzone` | `string` | `"dropzone001"` | `id` du rectangle cible dans le SVG |
-| `selectable` | `boolean` | `true` | Rend l'élément sélectionnable dans le viewer |
-
-> [!NOTE]
-> Le transfert vers l'iframe utilise les **Transferable Objects** (zero-copy) pour les performances.
 
 ---
 
@@ -346,7 +339,7 @@ Les paramètres disponibles incluent notamment :
 | `scaleX` / `scaleY` | Échelle sur chaque axe |
 
 > [!NOTE]
-> L'`id` d'un élément ajouté dynamiquement est retourné par `addSVGText()` et `addSVGImage()`. Il suit le format `text-{timestamp}` ou `img-{timestamp}`.
+> L'`id` d'un élément ajouté dynamiquement est retourné par `addSVGText()` et `addSVGImage()`.
 
 ---
 
