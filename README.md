@@ -28,7 +28,7 @@ Inclure le script du composant dans la page :
 
 ---
 
-## Partie 1 — Contrôle via attributs HTML
+## Partie 1 — Utilisation Basique
 
 Le composant écoute automatiquement les événements `click` et `change` sur n'importe quel élément de la page portant les bons attributs. **Aucun JavaScript n'est nécessaire.**
 
