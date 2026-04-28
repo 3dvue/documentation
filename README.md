@@ -1,7 +1,7 @@
 # Documentation — `<viewer-3dvue>`
 
 
-## Avant-propos — Comprendre les urls
+## Avant-propos - comprendre les urls
 
 Toute scène 3D est identifiée par le paramètre `p` dans l'URL du viewer. Ce paramètre encode à la fois **quel(s) objet(s) afficher** et **quels matériaux leur appliquer**, sous forme d'une chaîne de codes à 2 caractères.
 
