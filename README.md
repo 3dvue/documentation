@@ -1,5 +1,6 @@
 # Documentation — `<viewer-3dvue>`
 
+---
 
 ## Avant-propos - comprendre les urls
 
@@ -55,6 +56,8 @@ La liste des matériaux disponibles (ID + nom) est disponible sous forme de csv 
 
 > [!NOTE]
 > L'**index 0** de chaque modèle est réservé à l'ID de l'objet. Les matériaux des meshes commencent donc à l'**index 1**. C'est pourquoi `setMaterial({ "1": "01" })` cible le premier mesh, pas l'index 0.
+
+---
 
 ## Installation
 
