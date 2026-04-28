@@ -1,5 +1,61 @@
 # Documentation — `<viewer-3dvue>`
 
+
+## Avant-propos — Comprendre les urls
+
+Toute scène 3D est identifiée par le paramètre `p` dans l'URL du viewer. Ce paramètre encode à la fois **quel(s) objet(s) afficher** et **quels matériaux leur appliquer**, sous forme d'une chaîne de codes à 2 caractères.
+
+### Structure d'un modèle
+
+Un modèle décrit un objet et ses matériaux :
+
+```
+[ID objet (2 char.)][matériau mesh 1 (2 char.)][matériau mesh 2 (2 char.)]...
+```
+
+Exemple pour un objet composé de 3 meshs :
+
+```
+01  01  1g  00
+↑   ↑   ↑   ↑
+│   │   │   └─ mesh 3 → hidden
+│   │   └───── mesh 2 → plastique-gris
+│   └───────── mesh 1 → cuir-rouge
+└───────────── ID objet → chaise_beluga_2
+```
+
+Ce qui donne dans l'URL : `?p=01011g00`
+
+### Plusieurs objets
+
+Plusieurs objets sont séparés par un `-` :
+
+```
+?p=01011g00-020100
+   ↑         ↑
+   objet 1   objet 2
+```
+
+### Référence des objets et matériaux
+
+La composition des objets (ID + liste ordonnée des meshes) est disponible sous forme de csv que 3Dvue fournira :
+
+| Name | ID | Mesh 1 | Mesh 2 | Mesh 3 | ... |
+|---|---|---|---|---|---|
+| chaise_beluga_2 | `01` | mesh_001 | mesh_002 | mesh_003 | ... |
+| poele-strato | `02` | mesh_001 | mesh_002 | mesh_003 | ... |
+| augustin | `04` | mesh_001 | mesh_005 | mesh_009 | ... |
+
+La liste des matériaux disponibles (ID + nom) est disponible sous forme de csv que 3Dvue fournira :
+| Name | ID |
+|---|---|
+| hidden | `00` |
+| cuir-rouge | `01` |
+| plastique-gris | `1g` |
+
+> [!NOTE]
+> L'**index 0** de chaque modèle est réservé à l'ID de l'objet. Les matériaux des meshes commencent donc à l'**index 1**. C'est pourquoi `setMaterial({ "1": "01" })` cible le premier mesh, pas l'index 0.
+
 ## Installation
 
 Inclure le script du composant dans la page :
