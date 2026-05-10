@@ -402,6 +402,24 @@ Les paramètres disponibles incluent notamment :
 
 ---
 
+### `removeSVGElement(id)`
+
+Supprime un élément SVG existant.
+
+```js
+// Supprimer un élément par son id
+viewer.removeSVGElement("img-1234567890");
+
+// Supprimer l'élément actuellement sélectionné
+viewer.removeSVGElement();
+```
+
+| Paramètre | Type | Défaut | Description |
+|---|---|---|---|
+| `id` | `string \| null` | `null` | ID de l'élément à supprimer, `null` pour cibler l'élément **actuellement sélectionné** |
+
+---
+
 ### Événements SVG
 
 | Événement | `e.detail` | Description |
